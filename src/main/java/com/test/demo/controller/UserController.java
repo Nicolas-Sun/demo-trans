@@ -16,8 +16,7 @@ import com.test.demo.service.IUserService;
 @RequestMapping("/user")
 public class UserController {
 
-	private Logger  logger = LoggerFactory.getLogger(UserController.class);
-	
+	private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Resource
 	private IUserService userService;
@@ -25,12 +24,17 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/showUser")
 	public String toIndex(HttpServletRequest request) {
+		String ret = null;
 		String idStr = request.getParameter("id");
 		if (idStr == null)
-			return "id cannot be null";
+		{
+			ret  = "id cannot be null";
+			return ret;
+		}
 		int id = Integer.parseInt(idStr);
 		User user = userService.getUserById(id);
-		logger.info("result is "+user.toString());
-		return user == null ? "no user info" : user.toString();
+		ret ="result is "+ (user==null?"no user info":user.toString());
+		logger.info(ret);
+		return ret;
 	}
 }
