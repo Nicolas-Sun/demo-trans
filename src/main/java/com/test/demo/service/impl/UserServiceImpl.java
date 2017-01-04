@@ -14,10 +14,16 @@ public class UserServiceImpl implements IUserService{
 	private IUserDao userDao;
 
 	public UserServiceImpl() {
-		System.out.println("UserServiceImpl");
+		
 	}
 
 	public User getUserById(int id) {
 		return userDao.selectById(id);
+	}
+
+	@Override
+	public void insertUser(User user) {
+		 userDao.insert(user);
+		
 	}
 }

@@ -9,4 +9,6 @@ public interface IUserDao {
 
 	public User selectById(int id);
 
+	public void insert(User user);
+
 }

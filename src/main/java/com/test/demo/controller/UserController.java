@@ -22,11 +22,9 @@ public class UserController {
 	private IUserService userService;
 
 	@ResponseBody
-	@RequestMapping("/showUser")
-	public String toIndex(HttpServletRequest request) {
-		logger.info("for test jenkins job");
-		logger.info("for test jenkins job second times");
-		
+	@RequestMapping("/get")
+	public String get(HttpServletRequest request) {
+		logger.info("start to show");		
 		String ret = null;
 		String idStr = request.getParameter("id");
 		if (idStr == null)
@@ -37,6 +35,37 @@ public class UserController {
 		int id = Integer.parseInt(idStr);
 		User user = userService.getUserById(id);
 		ret ="result is "+ (user==null?"no user info":user.toString());
+		logger.info(ret);
+		return ret;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/insert")
+	public String insert(HttpServletRequest request) {
+		logger.info("start to insert");		
+		
+		String ret = null;
+		String idStr = request.getParameter("id");
+		String name  = request.getParameter("name");
+		String ageStr = request.getParameter("age");
+		String address = request.getParameter("address");
+		if (idStr == null ||name ==null || ageStr ==null|| address == null)
+		{
+			ret  = "all parameter cannot be null";
+			return ret;
+		}
+		
+		int id = Integer.parseInt(idStr);
+		int age  = Integer.parseInt(ageStr);
+		User user =new User();
+		user.setId(id);
+		user.setName(name);
+		user.setAge(age);
+		user.setAddress(address);
+		
+		userService.insertUser(user);
+		
+		ret ="success";
 		logger.info(ret);
 		return ret;
 	}

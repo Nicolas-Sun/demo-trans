@@ -9,5 +9,10 @@
 				WHERE ts.id = #{id} 
 	</select>
 	
-	
+	<insert id="insert" parameterType="com.test.demo.bean.User">
+		INSERT INTO t_user ts
+			(id,name,age,address)
+			VALUES
+			(#{id},#{name},#{age},#{address})
+	</insert>
 </mapper>
