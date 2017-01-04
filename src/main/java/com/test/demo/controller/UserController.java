@@ -24,6 +24,9 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/showUser")
 	public String toIndex(HttpServletRequest request) {
+		logger.info("for test jenkins job");
+		
+		
 		String ret = null;
 		String idStr = request.getParameter("id");
 		if (idStr == null)
