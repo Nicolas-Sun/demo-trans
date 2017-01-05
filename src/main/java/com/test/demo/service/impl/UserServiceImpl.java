@@ -10,11 +10,13 @@ import com.test.demo.service.IUserService;
 @Service
 public class UserServiceImpl implements IUserService{
 	
+	private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	@Autowired
 	private IUserDao userDao;
 
 	public UserServiceImpl() {
-		
+		logger.debug("test rollback!");
 	}
 
 	public User getUserById(int id) {
