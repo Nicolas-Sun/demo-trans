@@ -3,7 +3,7 @@
 <mapper namespace="com.test.demo.dao.IUserDao">
 
 
-	<!-- 查询学生，根据id -->
+	<!-- 查询根据id -->
 	<select id="selectById" parameterType="Integer" resultType="com.test.demo.bean.User" >
 			SELECT * FROM t_user ts
 				WHERE ts.id = #{id} 
